@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.RadioButton?>
+
+<ScrollPane fitToWidth="true" fitToHeight="true" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainSceneController">
+   <content>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0">
+         <children>
+      <AnchorPane layoutX="10.0" layoutY="600.0" prefWidth="1850.0">
+         <children>
+            <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" spacing="8.0" alignment="TOP_LEFT" prefWidth="1850.0">
+               <children>
+                  <HBox spacing="12.0" alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Add Latency" />
+                        <TextField fx:id="addLatency" prefWidth="80.0" />
+                        <Label text="Sub Latency" />
+                        <TextField fx:id="subLatency" prefWidth="80.0" />
+                        <Label text="Multiply Latency" />
+                        <TextField fx:id="mulLatency" prefWidth="80.0" />
+                        <Label text="Divide Latency" />
+                        <TextField fx:id="divLatency" prefWidth="80.0" />
+                        <Label text="Load Latency" />
+                        <TextField fx:id="loadLatency" prefWidth="80.0" />
+                        <Label text="Store Latency" />
+                        <TextField fx:id="storeLatency" prefWidth="80.0" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="12.0" alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Int ADD Lat" />
+                        <TextField fx:id="intAddLatency" prefWidth="60.0" />
+                        <Label text="Int SUB Lat" />
+                        <TextField fx:id="intSubLatency" prefWidth="60.0" />
+                        <Label text="DADD Lat" />
+                        <TextField fx:id="daddLatency" prefWidth="60.0" />
+                        <Label text="DSUB Lat" />
+                        <TextField fx:id="dsubLatency" prefWidth="60.0" />
+                        <Label text="BRANCH Lat" />
+                        <TextField fx:id="branchLatency" prefWidth="60.0" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="12.0" alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Add Stations" />
+                        <TextField fx:id="addStationSize" prefWidth="60.0" />
+                        <Label text="Mul Stations" />
+                        <TextField fx:id="mulStationSize" prefWidth="60.0" />
+                        <Label text="Int Stations" />
+                        <TextField fx:id="intStationSize" prefWidth="60.0" />
+                        <Label text="Load Buffers" />
+                        <TextField fx:id="loadBufferSize" prefWidth="60.0" />
+                        <Label text="Store Buffers" />
+                        <TextField fx:id="storeBufferSize" prefWidth="60.0" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="12.0" alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Cache Size" />
+                        <TextField fx:id="cacheSize" prefWidth="80.0" />
+                        <Label text="Block Size" />
+                        <TextField fx:id="blockSize" prefWidth="60.0" />
+                        <Label text="Cache Hit" />
+                        <TextField fx:id="cacheHit" prefWidth="60.0" />
+                        <Label text="Cache Miss" />
+                        <TextField fx:id="cacheMiss" prefWidth="60.0" />
+                        <Label text="Memory" />
+                        <TextField fx:id="memorySize" prefWidth="80.0" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="12.0" alignment="CENTER_RIGHT" prefWidth="1850.0">
+                     <children>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#onClear" prefHeight="40.0" prefWidth="120.0" text="Clear" style="-fx-background-color: #ffb3b3; -fx-text-fill: black; -fx-border-color: #ff7f7f; -fx-border-radius:4; -fx-background-radius:4;">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#onStart" prefHeight="40.0" prefWidth="120.0" text="Start">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#onLoad" prefHeight="40.0" prefWidth="120.0" text="Load File">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="nextButton" mnemonicParsing="false" onMouseClicked="#nextCycleClick" prefHeight="40.0" prefWidth="120.0" text="Next Cycle">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <TextArea fx:id="summary" editable="false" layoutX="24.0" layoutY="82.0" prefHeight="476.0" prefWidth="606.0" />
+      <AnchorPane layoutX="24.0" layoutY="780.0" prefWidth="606.0">
+         <children>
+            <Label alignment="CENTER_LEFT" layoutX="0.0" layoutY="0.0" prefHeight="24.0" prefWidth="200.0" text="Instruction Builder">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <VBox layoutX="0.0" layoutY="28.0" spacing="6.0" prefWidth="606.0">
+               <children>
+                  <HBox spacing="6.0">
+                     <children>
+                        <Label text="Op:" />
+                        <ChoiceBox fx:id="opChoice" prefWidth="140.0" />
+                        <Label text="Dst:" />
+                        <ChoiceBox fx:id="rdChoice" prefWidth="100.0" />
+                        <Label text="Src1:" />
+                        <ChoiceBox fx:id="rsChoice" prefWidth="100.0" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="6.0">
+                     <children>
+                        <Label text="Src2 / Addr:" />
+                        <ChoiceBox fx:id="rtChoice" prefWidth="100.0" />
+                        <Label text="Offset:" />
+                        <TextField fx:id="addrOffset" prefWidth="80.0" />
+                        <Button mnemonicParsing="false" onAction="#onAddInstruction" prefHeight="30.0" prefWidth="140.0" text="Add Instruction">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <TextArea fx:id="programArea" editable="true" prefHeight="120.0" prefWidth="606.0" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+         <AnchorPane layoutX="640.0" layoutY="780.0" prefWidth="360.0">
+            <children>
+               <Label alignment="CENTER_LEFT" layoutX="0.0" layoutY="0.0" prefHeight="24.0" prefWidth="200.0" text="Register Seeds">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <HBox layoutX="0.0" layoutY="28.0" spacing="6.0">
+                  <children>
+                     <Label text="Reg:" />
+                     <ChoiceBox fx:id="regChoice" prefWidth="120.0" />
+                     <Label text="Value:" />
+                     <TextField fx:id="regValue" prefWidth="80.0" />
+                     <Button mnemonicParsing="false" onAction="#onAddSeed" prefHeight="30.0" prefWidth="80.0" text="Add Seed">
+                        <font>
+                           <Font name="Arial" size="12.0" />
+                        </font>
+                     </Button>
+                     <Button mnemonicParsing="false" onAction="#onClearSeeds" prefHeight="30.0" prefWidth="100.0" text="Clear Seeds">
+                        <font>
+                           <Font name="Arial" size="12.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </HBox>
+                  <HBox layoutX="0.0" layoutY="64.0" spacing="8.0">
+                     <children>
+                        <RadioButton fx:id="autofillRadio" mnemonicParsing="false" text="Autofill defaults" />
+                        <RadioButton fx:id="clearRadio" mnemonicParsing="false" text="Use Clear values (zero others)" />
+                     </children>
+                  </HBox>
+                  <TextArea fx:id="seedArea" editable="false" layoutX="0.0" layoutY="96.0" prefHeight="88.0" prefWidth="360.0" />
+            </children>
+         </AnchorPane>
+      <Label alignment="CENTER" layoutX="24.0" layoutY="36.0" prefHeight="34.0" prefWidth="606.0" text="Cycles Summary">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="cycleLabel" alignment="CENTER_RIGHT" layoutX="410.0" layoutY="36.0" prefHeight="34.0" prefWidth="200.0" text="Cycle: 0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="addReservationStation" editable="false" layoutX="660.0" layoutY="392.0" prefHeight="165.0" prefWidth="351.0" />
+      <Label alignment="CENTER" layoutX="660.0" layoutY="345.0" prefHeight="46.0" prefWidth="351.0" text="Reservation Station Add">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="683.0" layoutY="397.0" text="ID" />
+      <Label layoutX="731.0" layoutY="397.0" text="Busy" />
+      <Label layoutX="789.0" layoutY="397.0" text="Op" />
+      <Label layoutX="840.0" layoutY="397.0" text="Vj" />
+      <Label layoutX="887.0" layoutY="397.0" text="Vk" />
+      <Label layoutX="979.0" layoutY="398.0" text="Qk" />
+      <Label layoutX="932.0" layoutY="397.0" text="Qj" />
+      <Line endX="248.0" layoutX="761.0" layoutY="424.0" startX="-100.0" />
+      <Line endX="-44.0" endY="113.0" layoutX="760.0" layoutY="444.0" startX="-44.0" startY="-52.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="815.0" layoutY="446.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="866.0" layoutY="446.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="912.0" layoutY="446.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="960.0" layoutY="446.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="1007.0" layoutY="446.0" startX="-44.0" startY="-53.0" />
+      <Line endX="248.0" layoutX="761.0" layoutY="467.0" startX="-100.0" />
+      <Line endX="248.0" layoutX="761.0" layoutY="514.0" startX="-100.0" />
+      <TextArea fx:id="mulReservationStation" editable="false" layoutX="657.0" layoutY="185.0" prefHeight="122.0" prefWidth="351.0" />
+      <Label alignment="CENTER" layoutX="656.0" layoutY="140.0" prefHeight="46.0" prefWidth="351.0" text="Reservation Station Multiply" textAlignment="CENTER">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="681.0" layoutY="192.0" text="ID" />
+      <Label layoutX="729.0" layoutY="192.0" text="Busy" />
+      <Label layoutX="787.0" layoutY="192.0" text="Op" />
+      <Label layoutX="838.0" layoutY="192.0" text="Vj" />
+      <Label layoutX="885.0" layoutY="192.0" text="Vk" />
+      <Label layoutX="977.0" layoutY="192.0" text="Qk" />
+      <Label layoutX="930.0" layoutY="192.0" text="Qj" />
+      <Line endX="248.0" layoutX="759.0" layoutY="219.0" startX="-100.0" />
+      <Line endX="-44.0" endY="68.0" layoutX="758.0" layoutY="238.0" startX="-44.0" startY="-52.0" />
+      <Line endX="-44.0" endY="68.0" layoutX="813.0" layoutY="239.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="68.0" layoutX="864.0" layoutY="239.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="68.0" layoutX="910.0" layoutY="239.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="68.0" layoutX="958.0" layoutY="239.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="68.0" layoutX="1005.0" layoutY="239.0" startX="-44.0" startY="-53.0" />
+      <Line endX="248.0" layoutX="759.0" layoutY="262.0" startX="-100.0" />
+      <Label alignment="CENTER" layoutX="1101.0" layoutY="129.0" prefHeight="46.0" prefWidth="320.0" text="Load Buffer" textAlignment="CENTER">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="1103.0" layoutY="346.0" prefHeight="46.0" prefWidth="390.0" text="Store Buffer" textAlignment="CENTER">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="storeBuffer" editable="false" layoutX="1108.0" layoutY="393.0" prefHeight="165.0" prefWidth="380.0" />
+      <!-- Integer reservation station (table style matching Add/Mul) -->
+      <TextArea fx:id="intReservationStation" editable="false" layoutX="650.0" layoutY="-10.0" prefHeight="165.0" prefWidth="351.0" />
+      <Label alignment="CENTER" layoutX="650.0" layoutY="-36.0" prefHeight="26.0" prefWidth="351.0" text="Reservation Station Integer">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="673.0" layoutY="-5.0" text="ID" />
+      <Label layoutX="721.0" layoutY="-5.0" text="Busy" />
+      <Label layoutX="779.0" layoutY="-5.0" text="Op" />
+      <Label layoutX="830.0" layoutY="-5.0" text="Vj" />
+      <Label layoutX="877.0" layoutY="-5.0" text="Vk" />
+      <Label layoutX="969.0" layoutY="-5.0" text="Qk" />
+      <Label layoutX="922.0" layoutY="-5.0" text="Qj" />
+      <Line endX="248.0" layoutX="751.0" layoutY="22.0" startX="-100.0" />
+      <Line endX="-44.0" endY="113.0" layoutX="750.0" layoutY="42.0" startX="-44.0" startY="-52.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="805.0" layoutY="44.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="856.0" layoutY="44.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="902.0" layoutY="44.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="950.0" layoutY="44.0" startX="-44.0" startY="-53.0" />
+      <Line endX="-44.0" endY="111.0" layoutX="997.0" layoutY="44.0" startX="-44.0" startY="-53.0" />
+      <Line endX="248.0" layoutX="751.0" layoutY="70.0" startX="-100.0" />
+      <Line endX="248.0" layoutX="751.0" layoutY="115.0" startX="-100.0" />
+      <Label fx:id="resIntID1" alignment="CENTER" layoutX="650.0" layoutY="24.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resIntID2" alignment="CENTER" layoutX="650.0" layoutY="67.0" prefHeight="46.0" prefWidth="57.0" />
+      <Label fx:id="resIntID3" alignment="CENTER" layoutX="650.0" layoutY="112.0" prefHeight="46.0" prefWidth="57.0" />
+      <Label fx:id="resIntBusy1" alignment="CENTER" layoutX="705.0" layoutY="24.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resIntBusy2" alignment="CENTER" layoutX="705.0" layoutY="67.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resIntBusy3" alignment="CENTER" layoutX="705.0" layoutY="112.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resIntOp1" alignment="CENTER" layoutX="762.0" layoutY="23.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resIntOp2" alignment="CENTER" layoutX="762.0" layoutY="67.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resIntOp3" alignment="CENTER" layoutX="760.0" layoutY="112.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resIntVj1" alignment="CENTER" layoutX="813.0" layoutY="23.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resIntVj2" alignment="CENTER" layoutX="813.0" layoutY="67.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resIntVj3" alignment="CENTER" layoutX="814.0" layoutY="112.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resIntVk1" alignment="CENTER" layoutX="856.0" layoutY="24.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resIntVk2" alignment="CENTER" layoutX="856.0" layoutY="67.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resIntVk3" alignment="CENTER" layoutX="857.0" layoutY="112.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resIntQj1" alignment="CENTER" layoutX="908.0" layoutY="23.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resIntQj2" alignment="CENTER" layoutX="908.0" layoutY="67.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resIntQj3" alignment="CENTER" layoutX="907.0" layoutY="112.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resIntQk1" alignment="CENTER" layoutX="955.0" layoutY="23.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resIntQk2" alignment="CENTER" layoutX="955.0" layoutY="67.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resIntQk3" alignment="CENTER" layoutX="955.0" layoutY="112.0" prefHeight="40.0" prefWidth="44.0" />
+      <TextArea fx:id="loadBuffer" editable="false" layoutX="1104.0" layoutY="175.0" prefHeight="165.0" prefWidth="315.0" />
+      <TextArea fx:id="registerFile" editable="false" layoutX="1540.0" layoutY="175.0" prefHeight="500.0" prefWidth="400.0" />
+      <Label alignment="CENTER" layoutX="1540.0" layoutY="129.0" prefHeight="34.0" prefWidth="200.0" text="Register File">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      
+      <Label fx:id="resAddID1" alignment="CENTER" layoutX="660.0" layoutY="426.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resAddID2" alignment="CENTER" layoutX="660.0" layoutY="469.0" prefHeight="46.0" prefWidth="57.0" />
+      <Label fx:id="resAddID3" alignment="CENTER" layoutX="660.0" layoutY="514.0" prefHeight="46.0" prefWidth="57.0" />
+      <Label fx:id="resMulID1" alignment="CENTER" layoutX="658.0" layoutY="221.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resMulID2" alignment="CENTER" layoutX="658.0" layoutY="265.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resMulBusy1" alignment="CENTER" layoutX="713.0" layoutY="221.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resMulBusy2" alignment="CENTER" layoutX="713.0" layoutY="265.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resMulOp1" alignment="CENTER" layoutX="769.0" layoutY="220.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resMulOp2" alignment="CENTER" layoutX="769.0" layoutY="264.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resMulVj1" alignment="CENTER" layoutX="821.0" layoutY="220.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resMulVj2" alignment="CENTER" layoutX="820.0" layoutY="260.0" prefHeight="46.0" prefWidth="44.0" />
+      <Label fx:id="resMulVk1" alignment="CENTER" layoutX="865.0" layoutY="221.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resMulVk2" alignment="CENTER" layoutX="864.0" layoutY="262.0" prefHeight="46.0" prefWidth="51.0" />
+      <Label fx:id="resMulQj1" alignment="CENTER" layoutX="916.0" layoutY="221.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resMulQk1" alignment="CENTER" layoutX="962.0" layoutY="220.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resMulQk2" alignment="CENTER" layoutX="963.0" layoutY="265.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resMulQj2" alignment="CENTER" layoutX="916.0" layoutY="265.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resAddBusy1" alignment="CENTER" layoutX="715.0" layoutY="426.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resAddBusy2" alignment="CENTER" layoutX="715.0" layoutY="471.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resAddBusy3" alignment="CENTER" layoutX="715.0" layoutY="516.0" prefHeight="40.0" prefWidth="57.0" />
+      <Label fx:id="resAddOp1" alignment="CENTER" layoutX="772.0" layoutY="425.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resAddOp2" alignment="CENTER" layoutX="772.0" layoutY="471.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resAddOp3" alignment="CENTER" layoutX="770.0" layoutY="516.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resAddVj1" alignment="CENTER" layoutX="823.0" layoutY="425.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resAddVj2" alignment="CENTER" layoutX="823.0" layoutY="471.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resAddVj3" alignment="CENTER" layoutX="824.0" layoutY="515.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resAddVk1" alignment="CENTER" layoutX="866.0" layoutY="426.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resAddVk2" alignment="CENTER" layoutX="866.0" layoutY="470.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resAddVk3" alignment="CENTER" layoutX="867.0" layoutY="516.0" prefHeight="40.0" prefWidth="51.0" />
+      <Label fx:id="resAddQj1" alignment="CENTER" layoutX="918.0" layoutY="425.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resAddQj2" alignment="CENTER" layoutX="918.0" layoutY="470.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resAddQj3" alignment="CENTER" layoutX="917.0" layoutY="516.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resAddQk1" alignment="CENTER" layoutX="965.0" layoutY="425.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resAddQk2" alignment="CENTER" layoutX="965.0" layoutY="470.0" prefHeight="40.0" prefWidth="44.0" />
+      <Label fx:id="resAddQk3" alignment="CENTER" layoutX="965.0" layoutY="516.0" prefHeight="40.0" prefWidth="44.0" />
+      
+      <Line endX="-44.0" endY="113.0" layoutX="1218.0" layoutY="445.0" startX="-44.0" startY="-52.0" />
+      <Line endX="-44.0" endY="113.0" layoutX="1285.0" layoutY="445.0" startX="-44.0" startY="-52.0" />
+      <Line endX="-44.0" endY="113.0" layoutX="1365.0" layoutY="445.0" startX="-44.0" startY="-52.0" />
+      <Line endX="-44.0" endY="113.0" layoutX="1445.0" layoutY="445.0" startX="-44.0" startY="-52.0" />
+      <Line endX="-44.0" endY="113.0" layoutX="1264.0" layoutY="227.0" startX="-44.0" startY="-52.0" />
+      <Line endX="-44.0" endY="113.0" layoutX="1365.0" layoutY="227.0" startX="-44.0" startY="-52.0" />
+      <Label alignment="CENTER" layoutX="1106.0" layoutY="180.0" prefHeight="21.0" prefWidth="64.0" text="ID">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="1221.0" layoutY="180.0" prefHeight="21.0" prefWidth="99.0" text="Busy">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="1330.0" layoutY="180.0" prefHeight="21.0" prefWidth="80.0" text="Add.">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Line endX="218.0" layoutX="1204.0" layoutY="210.0" startX="-100.0" />
+      <Label alignment="CENTER" layoutX="1109.0" layoutY="397.0" prefHeight="21.0" prefWidth="64.0" text="ID">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="1173.0" layoutY="397.0" prefHeight="21.0" prefWidth="79.0" text="Busy">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="1250.0" layoutY="397.0" prefHeight="21.0" prefWidth="70.0" text="Add.">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="1330.0" layoutY="397.0" prefHeight="21.0" prefWidth="70.0" text="Val.">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="1410.0" layoutY="397.0" prefHeight="21.0" prefWidth="70.0" text="Q">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Line endX="280.0" layoutX="1208.0" layoutY="427.0" startX="-100.0" />
+      <Line endX="280.0" layoutX="1207.0" layoutY="469.0" startX="-100.0" />
+      <Line endX="280.0" layoutX="1208.0" layoutY="516.0" startX="-100.0" />
+      <Line endX="219.0" layoutX="1203.0" layoutY="251.0" startX="-100.0" />
+      <Line endX="218.0" layoutX="1204.0" layoutY="297.0" startX="-100.0" />
+      <Label fx:id="loadID1" alignment="CENTER" layoutX="1106.0" layoutY="211.0" prefHeight="40.0" prefWidth="114.0" />
+      <Label fx:id="loadID2" alignment="CENTER" layoutX="1106.0" layoutY="254.0" prefHeight="40.0" prefWidth="114.0" />
+      <Label fx:id="loadID3" alignment="CENTER" layoutX="1106.0" layoutY="298.0" prefHeight="40.0" prefWidth="114.0" />
+      <Label fx:id="loadBusy1" alignment="CENTER" layoutX="1220.0" layoutY="211.0" prefHeight="40.0" prefWidth="99.0" />
+      <Label fx:id="loadBusy2" alignment="CENTER" layoutX="1220.0" layoutY="254.0" prefHeight="40.0" prefWidth="99.0" />
+      <Label fx:id="loadBusy3" alignment="CENTER" layoutX="1220.0" layoutY="300.0" prefHeight="40.0" prefWidth="99.0" />
+      <Label fx:id="loadAddr1" alignment="CENTER" layoutX="1330.0" layoutY="211.0" prefHeight="40.0" prefWidth="80.0" />
+      <Label fx:id="loadAddr2" alignment="CENTER" layoutX="1330.0" layoutY="254.0" prefHeight="40.0" prefWidth="80.0" />
+      <Label fx:id="loadAddr3" alignment="CENTER" layoutX="1330.0" layoutY="298.0" prefHeight="40.0" prefWidth="80.0" />
+      <Label fx:id="storeID1" alignment="CENTER" layoutX="1109.0" layoutY="428.0" prefHeight="40.0" prefWidth="64.0" />
+      <Label fx:id="storeID2" alignment="CENTER" layoutX="1109.0" layoutY="472.0" prefHeight="40.0" prefWidth="64.0" />
+      <Label fx:id="storeID3" alignment="CENTER" layoutX="1109.0" layoutY="517.0" prefHeight="40.0" prefWidth="64.0" />
+      <Label fx:id="storeBusy1" alignment="CENTER" layoutX="1175.0" layoutY="428.0" prefHeight="40.0" prefWidth="79.0" />
+      <Label fx:id="storeBusy2" alignment="CENTER" layoutX="1175.0" layoutY="473.0" prefHeight="40.0" prefWidth="79.0" />
+      <Label fx:id="storeBusy3" alignment="CENTER" layoutX="1175.0" layoutY="517.0" prefHeight="40.0" prefWidth="79.0" />
+      <Label fx:id="storeAddr1" alignment="CENTER" layoutX="1250.0" layoutY="428.0" prefHeight="40.0" prefWidth="70.0" />
+      <Label fx:id="storeAddr2" alignment="CENTER" layoutX="1250.0" layoutY="473.0" prefHeight="40.0" prefWidth="70.0" />
+      <Label fx:id="storeAddr3" alignment="CENTER" layoutX="1250.0" layoutY="517.0" prefHeight="40.0" prefWidth="70.0" />
+      <Label fx:id="storeVal1" alignment="CENTER" layoutX="1330.0" layoutY="428.0" prefHeight="40.0" prefWidth="70.0" />
+      <Label fx:id="storeVal2" alignment="CENTER" layoutX="1330.0" layoutY="473.0" prefHeight="40.0" prefWidth="70.0" />
+      <Label fx:id="storeVal3" alignment="CENTER" layoutX="1330.0" layoutY="517.0" prefHeight="40.0" prefWidth="70.0" />
+      <Label fx:id="storeQj1" alignment="CENTER" layoutX="1410.0" layoutY="428.0" prefHeight="40.0" prefWidth="70.0" />
+      <Label fx:id="storeQj2" alignment="CENTER" layoutX="1410.0" layoutY="473.0" prefHeight="40.0" prefWidth="70.0" />
+      <Label fx:id="storeQj3" alignment="CENTER" layoutX="1410.0" layoutY="517.0" prefHeight="40.0" prefWidth="70.0" />
+      <!-- latency inputs moved to bottom HBox -->
+
+      </children>
+      </Pane>
+   </content>
+</ScrollPane>
